@@ -35,56 +35,56 @@ public enum LnCommandStationType {
     //  enum value(name, canRead, progEndOp, ThrottleManager, SlotManager, supportsIdle, supportsMultimeter
     COMMAND_STATION_DCS100("DCS100 (Chief)",  // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING,
             "LnThrottleManager", "SlotManager",  // NOI18N
             IdleSupport.SUPPORTS_OPC_IDLE,
             MultiMeterSupport.NO_MULTIMETER_SUPPORT,
             LocoResetSupport.NO_LOCO_RESET_SUPPORT),
     COMMAND_STATION_DCS240("DCS240 (Advanced Command Station)",  // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING,
             "LnThrottleManager", "SlotManager",  // NOI18N
             IdleSupport.SUPPORTS_OPC_IDLE,
             MultiMeterSupport.SUPPORTS_MULTIMETER_FUNCTION,
             LocoResetSupport.SUPPORTS_LOCO_RESET_FUNCTION),
     COMMAND_STATION_DCS210("DCS210 (Evolution Command Station)",  // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING,
             "LnThrottleManager", "SlotManager",  // NOI18N
             IdleSupport.SUPPORTS_OPC_IDLE,
             MultiMeterSupport.SUPPORTS_MULTIMETER_FUNCTION,
             LocoResetSupport.SUPPORTS_LOCO_RESET_FUNCTION),
     COMMAND_STATION_DCS200("DCS200",  // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING,
             "LnThrottleManager", "SlotManager",  // NOI18N
             IdleSupport.SUPPORTS_OPC_IDLE,
             MultiMeterSupport.NO_MULTIMETER_SUPPORT,
             LocoResetSupport.NO_LOCO_RESET_SUPPORT),
     COMMAND_STATION_DCS050("DCS50 (Zephyr)",  // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING,
             "LnThrottleManager", "SlotManager",  // NOI18N
             IdleSupport.NO_OPC_IDLE_SUPPORT,
             MultiMeterSupport.NO_MULTIMETER_SUPPORT,
             LocoResetSupport.NO_LOCO_RESET_SUPPORT),
     COMMAND_STATION_DCS051("DCS51 (Zephyr Xtra)",  // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING,
             "LnThrottleManager", "SlotManager",  // NOI18N
             IdleSupport.NO_OPC_IDLE_SUPPORT,
             MultiMeterSupport.NO_MULTIMETER_SUPPORT,
             LocoResetSupport.NO_LOCO_RESET_SUPPORT),
     COMMAND_STATION_DCS052("DCS52 (Zephyr Express)", // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING,
             "LnThrottleManager", "SlotManager",  // NOI18N
             IdleSupport.NO_OPC_IDLE_SUPPORT,
             MultiMeterSupport.NO_MULTIMETER_SUPPORT,
             LocoResetSupport.SUPPORTS_LOCO_RESET_FUNCTION),
     COMMAND_STATION_DB150("DB150 (Empire Builder)", // NOI18N
             ReadsFromServiceModeTrack.NO_SVC_MODE_READS,
-            ProgDepowersTrack.TRACK_ALIVE_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
             "LnThrottleManager", "SlotManager",  // NOI18N
             IdleSupport.SUPPORTS_OPC_IDLE,
             MultiMeterSupport.NO_MULTIMETER_SUPPORT,
@@ -93,32 +93,32 @@ public enum LnCommandStationType {
     // the following command stations are assumed to not support "OPC_IDLE"
     COMMAND_STATION_LBPS("LocoBuffer (PS)",  // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING,
             "LnThrottleManager", "SlotManager",  // NOI18N
             IdleSupport.NO_OPC_IDLE_SUPPORT,
             MultiMeterSupport.NO_MULTIMETER_SUPPORT,
             LocoResetSupport.NO_LOCO_RESET_SUPPORT),
     COMMAND_STATION_MM("Mix-Master",  // NOI18N
             ReadsFromServiceModeTrack.NO_SVC_MODE_READS,
-            ProgDepowersTrack.TRACK_ALIVE_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING, // GUESS
             "LnThrottleManager", "SlotManager",  // NOI18N
-            IdleSupport.NO_OPC_IDLE_SUPPORT,
-            MultiMeterSupport.NO_MULTIMETER_SUPPORT,
-            LocoResetSupport.NO_LOCO_RESET_SUPPORT),
+            IdleSupport.NO_OPC_IDLE_SUPPORT, // GUESS
+            MultiMeterSupport.NO_MULTIMETER_SUPPORT, // GUESS
+            LocoResetSupport.NO_LOCO_RESET_SUPPORT), // GUESS 
     COMMAND_STATION_IBX_TYPE_1("Intellibox-I",  // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_ALIVE_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING, // GUESS
             "Ib1ThrottleManager", "SlotManager",  // NOI18N
-            IdleSupport.NO_OPC_IDLE_SUPPORT,
-            MultiMeterSupport.NO_MULTIMETER_SUPPORT,
-            LocoResetSupport.NO_LOCO_RESET_SUPPORT),
+            IdleSupport.NO_OPC_IDLE_SUPPORT, // GUESS
+            MultiMeterSupport.NO_MULTIMETER_SUPPORT, // GUESS
+            LocoResetSupport.NO_LOCO_RESET_SUPPORT), // GUESS
     COMMAND_STATION_IBX_TYPE_2("Intellibox-II",  // NOI18N
-            ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_ALIVE_WHEN_PROGRAMMING,
+            ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK, // GUESS
+            ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING, // GUESS
             "Ib2ThrottleManager", "UhlenbrockSlotManager",  // NOI18N
-            IdleSupport.NO_OPC_IDLE_SUPPORT,
-            MultiMeterSupport.NO_MULTIMETER_SUPPORT,
-            LocoResetSupport.NO_LOCO_RESET_SUPPORT),
+            IdleSupport.NO_OPC_IDLE_SUPPORT, // GUESS
+            MultiMeterSupport.NO_MULTIMETER_SUPPORT, // GUESS
+            LocoResetSupport.NO_LOCO_RESET_SUPPORT), // GUESS
 
     // the following command stations are known to not support "OPC_IDLE"
     COMMAND_STATION_PR3_ALONE("PR3 standalone programmer",  // NOI18N
@@ -151,18 +151,18 @@ public enum LnCommandStationType {
             LocoResetSupport.NO_LOCO_RESET_SUPPORT),
     COMMAND_STATION_USB_DCS240_ALONE("DCS240 USB interface as standalone programmer", // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
+            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING, // applies in standalone programmer mode only!
             "LnThrottleManager", "SlotManager",  // NOI18N
-            IdleSupport.NO_OPC_IDLE_SUPPORT,
-            MultiMeterSupport.NO_MULTIMETER_SUPPORT,
-            LocoResetSupport.NO_LOCO_RESET_SUPPORT),
+            IdleSupport.NO_OPC_IDLE_SUPPORT, // applies in standalone programmer mode only!
+            MultiMeterSupport.NO_MULTIMETER_SUPPORT, // believed to apply in standalone programmer mode!
+            LocoResetSupport.NO_LOCO_RESET_SUPPORT), // believed to apply in standalone programmer mode!
     COMMAND_STATION_USB_DCS52_ALONE("DCS52 USB interface as standalone programmer",  // NOI18N
             ReadsFromServiceModeTrack.CAN_READ_ON_SVC_TRACK,
-            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
-            "LnThrottleManager", "SlotManager",
-            IdleSupport.NO_OPC_IDLE_SUPPORT, // NOI18N
-            MultiMeterSupport.NO_MULTIMETER_SUPPORT,
-            LocoResetSupport.NO_LOCO_RESET_SUPPORT);
+            ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING, // applies in standalone programmer mode only!
+            "LnThrottleManager", "SlotManager", // NOI18N
+            IdleSupport.NO_OPC_IDLE_SUPPORT, // applies in standalone programmer mode only!
+            MultiMeterSupport.NO_MULTIMETER_SUPPORT, // believed to apply in standalone programmer mode!
+            LocoResetSupport.NO_LOCO_RESET_SUPPORT); // believed to apply in standalone programmer mode!
 
     // Note that the convention is that the first word (space-separated token) of the name is the
     // name of a configuration file for loconet.cmdstnconfig
@@ -325,7 +325,7 @@ public enum LnCommandStationType {
     }
 
     protected enum ProgDepowersTrack {
-        TRACK_OFF_WHEN_PROGRAMMING, TRACK_ALIVE_WHEN_PROGRAMMING
+        TRACK_OFF_WHEN_PROGRAMMING, TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING
     }
 
     protected enum IdleSupport {
