@@ -1387,7 +1387,8 @@ public class SlotManager extends AbstractProgrammer implements LocoNetListener, 
      */
     protected void restartEndOfProgrammingTimer() {
         final int delay = 10000;
-        if (mProgEndSequence) {
+        if ((this.commandStationType == LnCommandStationType.COMMAND_STATION_DB150) && 
+                (mProgEndSequence)) {
             if (mPowerTimer == null) {
                 mPowerTimer = new javax.swing.Timer(delay, new java.awt.event.ActionListener() {
                     @Override
@@ -1400,6 +1401,7 @@ public class SlotManager extends AbstractProgrammer implements LocoNetListener, 
             mPowerTimer.setInitialDelay(delay);
             mPowerTimer.setRepeats(false);
             mPowerTimer.start();
+            log.debug("Starting timer for post-programming track-power-on process.");
         }
     }
 
@@ -1407,15 +1409,24 @@ public class SlotManager extends AbstractProgrammer implements LocoNetListener, 
      * Internal routine to handle a programming timeout by turning power off.
      */
     synchronized protected void doEndOfProgramming() {
+        log.debug("timer task for post-programming track-power-on process.");
         if (progState == 0) {
+            log.debug("timer task for post-programming track-power-on process confirms end of programming.");
              if ( mServiceMode ) {
-                // finished service-track programming, time to power on
-                log.debug("end service-mode programming: turn power on"); // NOI18N
-                try {
-                    jmri.InstanceManager.getDefault(jmri.PowerManager.class).setPower(jmri.PowerManager.ON);
-                } catch (jmri.JmriException e) {
-                    log.error("exception during power on at end of programming: {}", e); // NOI18N
-                }
+                log.debug("timer task for post-programming track-power-on process confirms end of programming via service mode.");
+
+                 if (commandStationType == LnCommandStationType.COMMAND_STATION_DB150) {
+                    // finished service-track programming, time to power on
+                    log.debug("end service-mode programming for DB150: turn track power on"); // NOI18N
+                    try {
+                        jmri.InstanceManager.getDefault(jmri.PowerManager.class).setPower(jmri.PowerManager.ON);
+                    } catch (jmri.JmriException e) {
+                        log.error("exception during power on at end of programming: {}", e); // NOI18N
+                    }
+                 } else {
+                    log.debug("end service-mode programming: no track power change"); // NOI18N
+
+                 }
             } else {
                 log.debug("end ops-mode programming: no power change"); // NOI18N
             }
