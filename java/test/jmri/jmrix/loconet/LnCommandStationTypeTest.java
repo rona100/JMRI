@@ -73,6 +73,44 @@ public class LnCommandStationTypeTest {
         Assert.assertFalse("MM loco reset expect false", LnCommandStationType.COMMAND_STATION_MM.getSupportsLocoReset());
         }
 
+    @Test
+    public void testTrackPowerDuringProgramming() {
+        LnCommandStationType commandStations[] = LnCommandStationType.values();
+        for (int i = 0; i < commandStations.length; ++i) {
+            LnCommandStationType c = commandStations[i];
+            switch (c) {
+                case COMMAND_STATION_DCS100:
+                case COMMAND_STATION_DCS200:
+                case COMMAND_STATION_DCS050:
+                case COMMAND_STATION_DCS051:
+                case COMMAND_STATION_DCS052:
+                case COMMAND_STATION_DCS210:
+                case COMMAND_STATION_DCS240:
+                case COMMAND_STATION_LBPS:
+                case COMMAND_STATION_MM:
+                case COMMAND_STATION_IBX_TYPE_1:
+                case COMMAND_STATION_IBX_TYPE_2:
+                    Assert.assertEquals(c.name+" track power during programming can be alive check:",
+                            LnCommandStationType.ProgDepowersTrack.TRACK_CAN_BE_ALIVE_WHEN_PROGRAMMING,
+                            c.progEndOp);
+                    break;
+                case COMMAND_STATION_DB150:
+                case COMMAND_STATION_PR2_ALONE:
+                case COMMAND_STATION_PR3_ALONE:
+                case COMMAND_STATION_PR4_ALONE:
+                case COMMAND_STATION_STANDALONE:
+                case COMMAND_STATION_USB_DCS240_ALONE:
+                case COMMAND_STATION_USB_DCS52_ALONE:
+                    Assert.assertEquals(c.name+" track power during programming off check:",
+                            LnCommandStationType.ProgDepowersTrack.TRACK_OFF_WHEN_PROGRAMMING,
+                            c.progEndOp);
+                    break;
+                default:
+                    Assert.fail("command station named "+c.name+" has no test");
+            }
+        }
+    }
+
     // The minimal setup for log4J
     @Before
     public void setUp() {
